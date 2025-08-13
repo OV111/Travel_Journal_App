@@ -5,7 +5,10 @@ const MainLayout = () => {
     return (
         <div className="bg-zinc-100">
             <Navbar />
+            <div>
             <Outlet />  
+
+            </div>
             <Footer />
         </div>
     )
