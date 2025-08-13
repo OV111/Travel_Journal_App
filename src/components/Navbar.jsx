@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 const Navbar = () => {
   const [theme, setTheme] = useState();
-
   return (
     <React.Fragment>
       <nav className="bg-gradient-to-r  from-sky-500  to-sky-600 flex items-center content-center justify-center gap-230 px-4  py-4">
