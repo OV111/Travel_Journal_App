@@ -11,7 +11,7 @@ const Home = () => {
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Discover amazing travel experiences from fellow adventurers and
-              share your own journey with the world.
+              share your own journey with the world!
             </p>
           </div>
         </main>
