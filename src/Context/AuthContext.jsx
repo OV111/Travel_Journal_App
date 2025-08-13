@@ -5,4 +5,4 @@ const AuthContext = createContext()
 const AuthProvider = () => {
 
 }
-export default AuthProvider
+export default AuthProvider;
