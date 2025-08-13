@@ -13,7 +13,6 @@ const App = () => {
   // } else {
 
   // }
-
   return (
     <BrowserRouter>
       <Routes>
@@ -23,6 +22,7 @@ const App = () => {
         </Route>
 
         <Route path="*" element="Not Found!"></Route>
+
       </Routes>
     </BrowserRouter>
   );
