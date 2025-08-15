@@ -14,6 +14,7 @@ import AmalfiCoast from "../assets/amalfiCoast.jpg";
 import Marrakech from "../assets/marrakech.jpg";
 
 import { AuthContext } from "../Context/AuthContext";
+import { TripsContext } from "../Context/TripsContext";
 
 const postsObj = [
   {
@@ -65,6 +66,7 @@ const postsObj = [
 
 const Explore = () => {
   const { isAuthenticated } = useContext(AuthContext);
+  const {addTrip} = useContext(TripsContext)
   return (
     <React.Fragment>
       <div>
@@ -142,6 +144,7 @@ const Explore = () => {
                     }}
                     component={Link}
                     to={``}
+                    onClick={() => {addTrip(post)}}
                   >
                     Add to Journal
                   </Button>

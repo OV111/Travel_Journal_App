@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
+// import { useState } from "react";
 import Navbar from "../components/Navbar";
 import { AuthContext } from "../Context/AuthContext";
 import SplitText from "../components/SplitText";
@@ -6,7 +7,7 @@ const handleAnimationComplete = () => {
   console.log('all leters have been animated!')
 }
 const Home = () => {
-  const { isAuthenticated, username, password, login } = useContext(AuthContext);
+  // const { isAuthenticated, username, password, login } = useContext(AuthContext);
 
   return (
     <React.Fragment>
