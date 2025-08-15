@@ -11,7 +11,6 @@ const Login = () => {
   const [userError, setUserError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
 
-    
   const handleSubmit = (e) => {
     e.preventDefault();
     if (username.trim().length >= 3 && password.length >= 6) {
