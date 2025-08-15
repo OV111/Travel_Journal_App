@@ -1,22 +1,76 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Context/AuthContext";
+import { Navigate } from "react-router-dom";
+import Button from "@mui/material/Button";
 const Navbar = () => {
-  const [theme, setTheme] = useState();
+  // const [theme, setTheme] = useState();
+  const { isAuthenticated, user, logout } = useContext(AuthContext);
+  const handleLogout = () => {
+    logout();
+  };
   return (
     <React.Fragment>
-      <nav className="bg-gradient-to-r  from-sky-500  to-sky-600 flex items-center content-center justify-center gap-230 px-4  py-4">
-        <h1 className="text-white font-medium text-3xl ">Travel Journal</h1>
-        <div className="flex items-center content-center space-x-4">
-          <Link to="/" className="text-white font-normal text-xl">
-            Home
+      <nav className="bg-[#003580] px-5  py-4">
+        <div className="flex items-center justify-between">
+          <Link to="/">
+            <h1 className="text-white font-medium text-3xl ">Travel Journal</h1>
           </Link>
-          <Link to="/explore" className="text-white font-normal text-xl">
-            Explore
-          </Link>
-          <Link to="/login" className="text-white font-normal text-xl">
-            Login
-          </Link>
+          <div className="flex items-center content-center space-x-5">
+            <Link
+              to="/"
+              className="text-white font-normal text-xl hover:text-sky-100"
+            >
+              Home
+            </Link>
+            <Link
+              to="/explore"
+              className="text-white font-normal text-xl hover:text-sky-100"
+            >
+              Explore
+            </Link>
+            <div className="flex items-center  justify-center space-x-4">
+              {isAuthenticated ? (
+                <>
+                  <Link
+                    to="/my-journal"
+                    className="text-white font-normal text-xl hover:text-sky-100 transition-colors"
+                  >
+                    My Journal
+                  </Link>
+                  <Link
+                    to="/add-trip"
+                    className="text-white font-normal text-xl hover:text-sky-100 transition-colors"
+                  >
+                    Add Trip
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link
+                    to="/login"
+                    className="text-white font-normal text-xl hover:text-sky-100"
+                  >
+                    Login
+                  </Link>
+                </>
+              )}
+            </div>
+
+            <div className="text-white font-normal text-xl hover:text-sky-100">
+              {isAuthenticated && (
+                <button
+                  onClick={() => {
+                    handleLogout();
+                  }}
+                  className="cursor-pointer"
+                >
+                  Logout
+                </button>
+              )}
+            </div>
+          </div>
         </div>
       </nav>
     </React.Fragment>
