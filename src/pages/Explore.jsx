@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
@@ -12,6 +12,8 @@ import SwissAlps from "../assets/swiss-alps.jpg";
 import Bangkok from "../assets/bangkok.jpg";
 import AmalfiCoast from "../assets/amalfiCoast.jpg";
 import Marrakech from "../assets/marrakech.jpg";
+
+import { AuthContext } from "../Context/AuthContext";
 
 const postsObj = [
   {
@@ -62,10 +64,11 @@ const postsObj = [
 ];
 
 const Explore = () => {
+  const { isAuthenticated } = useContext(AuthContext);
   return (
     <React.Fragment>
       <div>
-        <h1 className="flex items-center justify-center text-4xl py-5 font-medium text-sky-800">
+        <h1 className="flex items-center justify-center text-4xl py-5 font-medium text-[#003580]">
           Travel Posts
         </h1>
         <p className="text-gray-600 text-xl max-w-4xl mx-auto">
@@ -81,10 +84,6 @@ const Explore = () => {
                 borderRadius: "1rem",
                 boxShadow: 1,
                 transition: "transform 0.3s, box-shadow 0.3s",
-                "&:hover": {
-                  transform: "translateY(-4px)",
-                  boxShadow: 1,
-                },
               }}
               variant="outlined"
             >
@@ -109,7 +108,7 @@ const Explore = () => {
                   variant="body2"
                   color="text.secondary"
                   textAlign="center"
-                  sx={{ mb: 1  }}
+                  sx={{ mb: 1 }}
                 >
                   {post.location} • {new Date(post.date).toLocaleDateString()}
                 </Typography>
@@ -118,12 +117,35 @@ const Explore = () => {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small"sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", px: 2 }} component={Link} to={``}>
+                <Button
+                  size="small"
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    px: 2,
+                  }}
+                  component={Link}
+                  to={``}
+                >
                   Read More
                 </Button>
-                <Button size="small"sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", px: 2 }} component={Link} to={``}>
-                  Add to Journal
-                </Button>
+
+                {isAuthenticated ? (
+                  <Button
+                    size="small"
+                    sx={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      px: 2,
+                    }}
+                    component={Link}
+                    to={``}
+                  >
+                    Add to Journal
+                  </Button>
+                ) : null}
               </CardActions>
             </Card>
           ))}
