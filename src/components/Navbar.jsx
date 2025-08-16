@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
-import { useState } from "react";
+// import { useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
 import { Navigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 const Navbar = () => {
   // const [theme, setTheme] = useState();
-  const { isAuthenticated, user, logout } = useContext(AuthContext);
+  const { isAuthenticated,  logout } = useContext(AuthContext);
   const handleLogout = () => {
     logout();
   };
