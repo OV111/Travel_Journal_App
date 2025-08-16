@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, BrowserRouter, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import NotFound from "./components/NotFound";
 import Explore from "./pages/Explore";
 import Home from "./pages/Home";
 import MainLayout from "./layouts/MainLayout";
@@ -20,9 +20,7 @@ const App = () => {
               <Route path="/" element={<Home />} />
               <Route path="/explore" element={<Explore />} />
               <Route path="/login" element={<Login />} />
-            </Route>
-
-            <Route element={<MainLayout />}>
+              
               <Route
                 path="/my-journal"
                 element={
@@ -41,7 +39,7 @@ const App = () => {
               />
             </Route>
 
-            <Route path="*" element="Not Found!"></Route>
+            <Route path="*" element={<NotFound></NotFound>}/>
           </Routes>
         </BrowserRouter>
       </TripsProvider>
