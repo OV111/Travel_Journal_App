@@ -20,13 +20,13 @@ const Navbar = () => {
           <div className="flex items-center content-center space-x-5">
             <Link
               to="/"
-              className="text-white font-normal text-xl hover:text-sky-100"
+              className="text-white font-normal text-xl hover:text-sky-200"
             >
               Home
             </Link>
             <Link
               to="/explore"
-              className="text-white font-normal text-xl hover:text-sky-100"
+              className="text-white font-normal text-xl hover:text-sky-200"
             >
               Explore
             </Link>
@@ -35,13 +35,13 @@ const Navbar = () => {
                 <>
                   <Link
                     to="/my-journal"
-                    className="text-white font-normal text-xl hover:text-sky-100 transition-colors"
+                    className="text-white font-normal text-xl hover:text-sky-200 transition-colors"
                   >
                     My Journal
                   </Link>
                   <Link
                     to="/add-trip"
-                    className="text-white font-normal text-xl hover:text-sky-100 transition-colors"
+                    className="text-white font-normal text-xl hover:text-sky-200 transition-colors"
                   >
                     Add Trip
                   </Link>
@@ -50,7 +50,7 @@ const Navbar = () => {
                 <>
                   <Link
                     to="/login"
-                    className="text-white font-normal text-xl hover:text-sky-100"
+                    className="text-white font-normal text-xl hover:text-sky-200"
                   >
                     Login
                   </Link>
