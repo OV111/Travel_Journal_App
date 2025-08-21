@@ -1,4 +1,4 @@
-import React, { useContext,  useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
 import istockphoto from "../assets/istockphoto.jpg";
@@ -71,15 +71,16 @@ const Home = () => {
             inspire others with your travel stories
           </p>
           <button className="font-medium text-xl mt-3 mb-20 px-6 py-3 bg-blue-600 text-white rounded-lg cursor-pointer hover:bg-[#003580] transition-colors duration-300 ease-in-out">
-            Start Your Adventure
+            <Link to="/login">Start Your Adventure</Link>
           </button>
         </div>
 
         <div className="relative grid justify-center items-center overflow-hidden  max-w-full mx-10">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-[#003580] to-[#00b4d8] bg-clip-text text-transparent">
+          <h1 className="text-4xl font-bold  pt-8">
+            {/* bg-gradient-to-r from-[#003580] to-[#00b4d8] bg-clip-text text-transparent */}
             Popular Destinations
           </h1>
-          <p className="text-xl text-muted-foreground max-w-4xl mx-auto py-4">
+          <p className="text-xl text-slate-600 text-muted-foreground max-w-4xl mx-auto pt-3 pb-8">
             Discover amazing places through the eyes of fellow travelers
           </p>
           <div className="flex gap-6 transition-transform duration-500">
@@ -123,11 +124,16 @@ const Home = () => {
                       {post.location} •{" "}
                       {new Date(post.date).toLocaleDateString()}
                     </Typography>
-                    <Typography variant="body2" maxHeight={400}>
+                    <Typography
+                      variant="body2"
+                      maxHeight={400}
+                      px={6}
+                      textAlign={"center"}
+                    >
                       {post.shortDescription}
                     </Typography>
                   </CardContent>
-                  <CardActions className=" px-10 ">
+                  <CardActions className="ml-6 gap-30">
                     <Button
                       size="small"
                       component={Link}
@@ -136,7 +142,7 @@ const Home = () => {
                       Read More
                     </Button>
                     {isAuthenticated && (
-                      <Button size="small" onClick={() => addTrip(post)}>
+                      <Button size="small"  onClick={() => addTrip(post)}>
                         Add to Journal
                       </Button>
                     )}
@@ -160,27 +166,29 @@ const Home = () => {
         </button>
 
         <div>
-          <h1 className="text-4xl font-medium text-muted-foreground max-w-4xl mx-auto py-4">
-            Travel Inspirations
-          </h1>
-          <p>Some text about quotes</p>
-          <div className="flex">
+          <h1 className="text-4xl font-bold  pt-10">Travel Inspirations</h1>
+          <p className="text-xl text-slate-600 text-muted-foreground max-w-4xl mx-auto pt-3 pb-5">
+            Words that fuel Adventure
+          </p>
+          <div className="flex justify-center items-center text-center gap-10 py-4">
             {travelQuotes.map((quote) => (
               <Card
                 key={quote.id}
                 sx={{
-                  minWidth: 300,
-                  maxWidth: 450,
+                  height: 130,
+                  width: 430,
                   borderRadius: "20px",
                   boxShadow: 0,
+                  px: 2,
                 }}
                 variant="outlined"
               >
-                <CardContent className="text-center px-8">
+                <CardContent className="text-center px-10">
                   <Typography
                     gutterBottom
                     variant="h5"
                     align="center"
+                    textAlign={"center"}
                     sx={{ mb: 0.5 }}
                   >
                     {quote.quote}
