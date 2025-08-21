@@ -12,7 +12,7 @@ const Navbar = () => {
   };
   return (
     <React.Fragment>
-      <nav className="bg-[#003580] px-5  py-4">
+      <nav className="bg-[#003580] px-5 py-4 my-0">
         <div className="flex items-center justify-between">
           <Link to="/">
             <h1 className="text-white font-medium text-3xl ">Travel Journal</h1>
