@@ -4,10 +4,11 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="font-bold text-2xl text-gray-900 mb-4">Travel Journal</h3>
+            <h3 className="font-bold text-2xl text-gray-900 mb-4">
+              Travel Journal
+            </h3>
             <p className="text-gray-600 text-m">
-              Capture and share your travel memories with fellow adventurers
-              around the world.
+              Capture and share your travel memories with fellow adventurers around the world.
             </p>
           </div>
 
@@ -68,5 +69,5 @@ const Footer = () => {
       </div>
     </footer>
   );
-}
+};
 export default Footer;
