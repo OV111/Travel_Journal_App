@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
+import istockphoto from "../assets/istockphoto.jpg";
 import { AuthContext } from "../Context/AuthContext";
 import { TripsContext } from "../Context/TripsContext";
 import SplitText from "../components/SplitText";
@@ -11,6 +13,16 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
+
+const travelQuotes = [
+  {
+    quote: "Travel is the only thing you buy that makes you richer",
+    author: "Anonymous",
+  },
+  { quote: "Adventure awaits those who seek it", author: "Explorer's Wisdom" },
+  { quote: "Collect moments, not things", author: "Travel Philosophy" },
+  // {}
+];
 
 const handleAnimationComplete = () => {
   console.log("All letters have been animated!");
@@ -35,11 +47,14 @@ const Home = () => {
 
   return (
     <React.Fragment>
-      <main className="text-center py-8 relative">
-        <div className="text-center mb-12">
+      <main className="text-center  relative">
+        <div
+          className="relative flex flex-col items-center justify-center my-0 py-0 h-[620px] bg-cover bg-center gap-8"
+          style={{ backgroundImage: `url(${istockphoto})` }}
+        >
           <SplitText
             text="Welcome to Travel Journal!"
-            className="text-5xl font-semibold mb-4"
+            className="text-7xl font-semibold mt-0"
             delay={100}
             duration={0.5}
             ease="power3.out"
@@ -51,14 +66,22 @@ const Home = () => {
             textAlign="center"
             onLetterAnimationComplete={handleAnimationComplete}
           />
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-3xl font-normal text-muted-foreground max-w-4xl mx-auto">
             Discover amazing travel experiences from fellow adventurers and
-            share your own journey with the world!
+            inspire others with your travel stories
           </p>
+          <button className="font-medium text-xl mt-3 mb-20 px-6 py-3 bg-blue-600 text-white rounded-lg cursor-pointer hover:bg-[#003580] transition-colors duration-300 ease-in-out">
+            Start Your Adventure
+          </button>
         </div>
 
-       
-        <div className="relative flex justify-center items-center overflow-hidden  max-w-full mx-10">
+        <div className="relative grid justify-center items-center overflow-hidden  max-w-full mx-10">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-[#003580] to-[#00b4d8] bg-clip-text text-transparent">
+            Popular Destinations
+          </h1>
+          <p className="text-xl text-muted-foreground max-w-4xl mx-auto py-4">
+            Discover amazing places through the eyes of fellow travelers
+          </p>
           <div className="flex gap-6 transition-transform duration-500">
             {Array.from({ length: 3 }).map((_, idx) => {
               const postIndex = (current + idx) % posts.length;
@@ -70,8 +93,8 @@ const Home = () => {
                   sx={{
                     minWidth: 300,
                     maxWidth: 450,
-                    borderRadius: "2rem",
-                    boxShadow: 2,
+                    borderRadius: "20px",
+                    boxShadow: 0,
                   }}
                   variant="outlined"
                 >
@@ -104,7 +127,7 @@ const Home = () => {
                       {post.shortDescription}
                     </Typography>
                   </CardContent>
-                  <CardActions>
+                  <CardActions className=" px-10 ">
                     <Button
                       size="small"
                       component={Link}
@@ -122,21 +145,55 @@ const Home = () => {
               );
             })}
           </div>
-
-          
         </div>
-          <button
-            className="absolute top-97 left-3 text-2xl cursor-pointer "
-            onClick={prevSlide}
-          >
-            ❮
-          </button>
-          <button
-            className="absolute top-97 right-3 text-2xl cursor-pointer"
-            onClick={nextSlide}
-          >
-            ❯
-          </button>
+        <button
+          className="absolute top-222 left-3 text-3xl cursor-pointer "
+          onClick={prevSlide}
+        >
+          ❮
+        </button>
+        <button
+          className="absolute top-222 right-3 text-3xl cursor-pointer"
+          onClick={nextSlide}
+        >
+          ❯
+        </button>
+
+        <div >
+          <h1 className="text-4xl font-medium text-muted-foreground max-w-4xl mx-auto py-4">
+            Travel Inspirations
+          </h1>
+          <p>Some text about quotes</p>
+          <div className="flex">
+
+          {travelQuotes.map((quote) => (
+            <Card
+              key={quote.id}
+              sx={{
+                minWidth: 300,
+                maxWidth: 450,
+                borderRadius: "20px",
+                boxShadow: 0,
+              }}
+              variant="outlined"
+            >
+              <CardContent className="text-center px-8">
+                <Typography
+                      gutterBottom
+                      variant="h5"
+                      align="center"
+                      sx={{ mb: 0.5 }}
+                      >
+                      {quote.quote}
+                    </Typography>
+<Typography >
+              {quote.author}
+</Typography>
+              </CardContent>
+            </Card>
+          ))}
+          </div>
+        </div>
       </main>
     </React.Fragment>
   );
