@@ -159,39 +159,36 @@ const Home = () => {
           ❯
         </button>
 
-        <div >
+        <div>
           <h1 className="text-4xl font-medium text-muted-foreground max-w-4xl mx-auto py-4">
             Travel Inspirations
           </h1>
           <p>Some text about quotes</p>
           <div className="flex">
-
-          {travelQuotes.map((quote) => (
-            <Card
-              key={quote.id}
-              sx={{
-                minWidth: 300,
-                maxWidth: 450,
-                borderRadius: "20px",
-                boxShadow: 0,
-              }}
-              variant="outlined"
-            >
-              <CardContent className="text-center px-8">
-                <Typography
-                      gutterBottom
-                      variant="h5"
-                      align="center"
-                      sx={{ mb: 0.5 }}
-                      >
-                      {quote.quote}
-                    </Typography>
-<Typography >
-              {quote.author}
-</Typography>
-              </CardContent>
-            </Card>
-          ))}
+            {travelQuotes.map((quote) => (
+              <Card
+                key={quote.id}
+                sx={{
+                  minWidth: 300,
+                  maxWidth: 450,
+                  borderRadius: "20px",
+                  boxShadow: 0,
+                }}
+                variant="outlined"
+              >
+                <CardContent className="text-center px-8">
+                  <Typography
+                    gutterBottom
+                    variant="h5"
+                    align="center"
+                    sx={{ mb: 0.5 }}
+                  >
+                    {quote.quote}
+                  </Typography>
+                  <Typography>{quote.author}</Typography>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </main>
