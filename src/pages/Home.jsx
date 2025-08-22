@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
-import istockphoto from "../assets/istockphoto.jpg";
+import AirplaneWindow from "../assets/AirplaneWindow.png";
 import { AuthContext } from "../Context/AuthContext";
 import { TripsContext } from "../Context/TripsContext";
 import SplitText from "../components/SplitText";
@@ -49,12 +49,12 @@ const Home = () => {
     <React.Fragment>
       <main className="text-center  relative">
         <div
-          className="relative flex flex-col items-center justify-center my-0 py-0 h-[620px] bg-cover bg-center gap-8"
-          style={{ backgroundImage: `url(${istockphoto})` }}
+          className="relative flex flex-col items-center justify-center h-[620px] bg-cover bg-center gap-0"
+          style={{ backgroundImage: `url(${AirplaneWindow})` }}
         >
           <SplitText
-            text="Welcome to Travel Journal!"
-            className="text-7xl font-semibold mt-0"
+            text="Welcome to Travel Journal"
+            className="text-[5.5rem] font-bold mt-0 text-[#033e91] drop-shadow-md z-3"
             delay={100}
             duration={0.5}
             ease="power3.out"
@@ -66,11 +66,11 @@ const Home = () => {
             textAlign="center"
             onLetterAnimationComplete={handleAnimationComplete}
           />
-          <p className="text-3xl font-normal text-muted-foreground max-w-4xl mx-auto">
+          <p className="text-3xl mb-4 font-semibold text-[#033e91] drop-shadow-md max-w-4xl mx-auto">
             Discover amazing travel experiences from fellow adventurers and
             inspire others with your travel stories
           </p>
-          <button className="font-medium text-xl mt-3 mb-20 px-6 py-3 bg-blue-600 text-white rounded-lg cursor-pointer hover:bg-[#003580] transition-colors duration-300 ease-in-out">
+          <button className="font-medium text-xl mt-3 mb-38 px-6 py-3 bg-blue-600 text-white rounded-lg cursor-pointer hover:bg-[#003580] transition-colors duration-300 ease-in-out">
             <Link to="/login">Start Your Adventure</Link>
           </button>
         </div>
