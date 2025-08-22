@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -11,9 +11,8 @@ import Button from "@mui/material/Button";
 import { AuthContext } from "../Context/AuthContext";
 import { TripsContext } from "../Context/TripsContext";
 
-import { postsObj } from "../data/posts";
-
 import Notification from "../components/Notification";
+import Aurora from "../components/Aurora";
 
 const Explore = () => {
   const navigate = useNavigate();
@@ -25,25 +24,42 @@ const Explore = () => {
     addTrip(post);
     setMessage(`The ${post.location} added to Journal!`);
   };
+
   return (
     <React.Fragment>
-      <div>
-        <h1 className="flex items-center justify-center text-center text-[#003580] text-5xl md:text-6xl font-serif text-primary my-6">
+      <div className="relative w-full min-h-screen overflow-hidden">
+        {/* Aurora background behind everything */}
+        <div className="absolute inset-0 z-0">
+                  <Aurora
+                    colorStops={["#00C6FF", "#0072FF", "#3A29FF"]}
+                    blend={0.4}
+                    amplitude={1.01}
+                    speed={0.5}
+                  />
+                </div>
+
+        {/* Content */}
+        <div className="relative z-10">
+
+        <h1 className="flex items-center justify-center text-center text-gray-100 text-5xl md:text-6xl font-serif text-primary my-6">
           Travel Posts
         </h1>
-        <p className="text-center text-gray-600 text-2xl max-w-4xl mx-auto">
+        <p className="text-center text-2xl text-muted-foreground max-w-3xl mx-auto text-slate-200">
           Discover amazing travel destinations, hidden gems, and unforgettable
           experiences around the world.
         </p>
-        <Grid container spacing={4} padding={5}>
+        </div>
+
+        <Grid container spacing={4} padding={5} className="relative z-10">
           {posts.map((post) => (
             <Card
+              key={post.id}
               sx={{
                 minWidth: 425,
                 maxWidth: 425,
                 borderRadius: "1rem",
                 boxShadow: 1,
-                transition: "transform 0.3s, box-shadow 0.3s",
+                transition: "transform 0.3s, boxShadow 0.3s",
               }}
               variant="outlined"
             >
@@ -58,8 +74,8 @@ const Explore = () => {
                 <Typography
                   gutterBottom
                   variant="h5"
-                  alignItems={"center"}
-                  textAlign={"center"}
+                  alignItems="center"
+                  textAlign="center"
                   sx={{ mb: 0.5 }}
                 >
                   {post.title}
@@ -79,36 +95,22 @@ const Explore = () => {
               <CardActions>
                 <Button
                   size="small"
-                  sx={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    px: 2,
-                  }}
+                  sx={{ px: 2 }}
                   component={Link}
                   to={`/explore/${post.id}`}
                 >
                   Read More
                 </Button>
 
-                {isAuthenticated ? (
+                {isAuthenticated && (
                   <Button
                     size="small"
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      px: 2,
-                    }}
-                    component={Link}
-                    to={``}
-                    onClick={() => {
-                      handleAddTrip(post);
-                    }}
+                    sx={{ px: 2 }}
+                    onClick={() => handleAddTrip(post)}
                   >
                     Add to Journal
                   </Button>
-                ) : null}
+                )}
               </CardActions>
             </Card>
           ))}
@@ -117,12 +119,10 @@ const Explore = () => {
 
       <Notification
         message={message}
-        onClose={() => {
-          setMessage("");
-        }}
-      ></Notification>
-
+        onClose={() => setMessage("")}
+      />
     </React.Fragment>
   );
 };
+
 export default Explore;
