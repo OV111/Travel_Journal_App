@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -11,24 +11,32 @@ import Button from "@mui/material/Button";
 import { AuthContext } from "../Context/AuthContext";
 import { TripsContext } from "../Context/TripsContext";
 
-
 import { postsObj } from "../data/posts";
 
+import Notification from "../components/Notification";
+
 const Explore = () => {
+  const navigate = useNavigate();
   const { isAuthenticated } = useContext(AuthContext);
-  const {addTrip} = useContext(TripsContext)
+  const { posts, addTrip } = useContext(TripsContext);
+  const [message, setMessage] = useState("");
+
+  const handleAddTrip = (post) => {
+    addTrip(post);
+    setMessage(`The ${post.location} added to Journal!`);
+  };
   return (
     <React.Fragment>
       <div>
-        <h1 className="flex items-center justify-center text-4xl py-5 font-medium text-[#003580]">
+        <h1 className="flex items-center justify-center text-center text-[#003580] text-5xl md:text-6xl font-serif text-primary my-6">
           Travel Posts
         </h1>
-        <p className="text-gray-600 text-xl max-w-4xl mx-auto">
+        <p className="text-center text-gray-600 text-2xl max-w-4xl mx-auto">
           Discover amazing travel destinations, hidden gems, and unforgettable
           experiences around the world.
         </p>
         <Grid container spacing={4} padding={5}>
-          {postsObj.map((post) => (
+          {posts.map((post) => (
             <Card
               sx={{
                 minWidth: 425,
@@ -78,7 +86,7 @@ const Explore = () => {
                     px: 2,
                   }}
                   component={Link}
-                  to={``}
+                  to={`/explore/${post.id}`}
                 >
                   Read More
                 </Button>
@@ -94,7 +102,9 @@ const Explore = () => {
                     }}
                     component={Link}
                     to={``}
-                    onClick={() => {addTrip(post)}}
+                    onClick={() => {
+                      handleAddTrip(post);
+                    }}
                   >
                     Add to Journal
                   </Button>
@@ -104,6 +114,14 @@ const Explore = () => {
           ))}
         </Grid>
       </div>
+
+      <Notification
+        message={message}
+        onClose={() => {
+          setMessage("");
+        }}
+      ></Notification>
+
     </React.Fragment>
   );
 };
