@@ -1,39 +1,40 @@
 import React, { useContext } from "react";
 import TiltedCard from "../components/TitleCard";
-import { TripsContext } from "../Context/TripsContext";
 import Aurora from "../components/Aurora";
+import { TripsContext } from "../Context/TripsContext";
+import { Trash2 } from "lucide-react";
+
 const MyJournal = () => {
-  const { trips, addTrip, deleteTrip } = useContext(TripsContext);
+  const { journalTrips, deleteTrip } = useContext(TripsContext);
 
   return (
     <React.Fragment>
       <div className="relative w-full min-h-screen overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Aurora
-            colorStops={["#3A29FF", "#FF94B4", "#FF3232"]}
-            blend={0.5}
-            amplitude={1.0}
+            colorStops={["#00C6FF", "#0072FF", "#3A29FF"]}
+            blend={0.4}
+            amplitude={1.01}
             speed={0.5}
           />
         </div>
 
         <div className="relative z-10">
-          <h1 className="items-center justify-center text-center text-[#003580] text-5xl md:text-6xl font-serif text-primary my-6">
+          <h1 className="items-center justify-center text-center text-gray-100 text-5xl md:text-6xl font-serif text-primary my-6">
             My Journal of Trips
           </h1>
-          <p className="text-center text-2xl text-muted-foreground max-w-3xl mx-auto text-slate-600">
-            {" "}
+          <p className="text-center text-2xl text-muted-foreground max-w-3xl mx-auto text-slate-200">
             Capturing moments, preserving memories, and sharing adventures from
             around the world
           </p>
 
-          {trips.length === 0 ? (
-            <p className="text-cyan-800 items-center justify-center text-center text-3xl font-bold my-19">
+          {journalTrips.length === 0 ? (
+            <p className="text-gray-100 items-center justify-center text-center text-3xl font-bold my-19">
               No Trips yet. Add some from Explore!
             </p>
           ) : (
             <ul className="mt-6 space-y-4">
-              {trips.map((post) => (
+              {journalTrips.map((post) => (
                 <li
                   key={post.id}
                   className="bg-slate-200 border-0 p-4 w-300 rounded-2xl mx-30 my-6 shadow"
@@ -53,11 +54,25 @@ const MyJournal = () => {
                     displayOverlayContent={true}
                     overlayContent=""
                   />
+
                   <h2 className="text-2xl font-semibold pt-5">{post.title}</h2>
                   <p className="font-light text-xl">
                     {post.location} • {new Date(post.date).toLocaleDateString()}
                   </p>
-                  <p className="text-xl font-normal">{post.shortDescription}</p>
+                  <div className="flex items-center justify-between">
+                    <p className="text-xl font-normal">
+                      {post.shortDescription}
+                    </p>
+                    <button
+                      className="relative right p-2 hover:bg-red-200 rounded-full transition-colors duration-200 group cursor-pointer"
+                      aria-label="Delete Trip"
+                      onClick={() => {
+                        deleteTrip(post.id);
+                      }}
+                    >
+                      <Trash2 className="h-5 w-5 text-red-500 hover:text-red-700" />
+                    </button>
+                  </div>
                 </li>
               ))}
             </ul>
