@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, lazy, Suspense } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
@@ -10,9 +10,12 @@ import Button from "@mui/material/Button";
 
 import { AuthContext } from "../Context/AuthContext";
 import { TripsContext } from "../Context/TripsContext";
-
 import Notification from "../components/Notification";
-import Aurora from "../components/Aurora";
+import LoaderSpinner from "../components/LoaderSpinner";
+
+const Aurora = lazy(() => {
+  return import("../components/Aurora");
+});
 
 const Explore = () => {
   const navigate = useNavigate();
@@ -30,24 +33,25 @@ const Explore = () => {
       <div className="relative w-full min-h-screen overflow-hidden">
         {/* Aurora background behind everything */}
         <div className="absolute inset-0 z-0">
-                  <Aurora
-                    colorStops={["#00C6FF", "#0072FF", "#3A29FF"]}
-                    blend={0.4}
-                    amplitude={1.01}
-                    speed={0.5}
-                  />
-                </div>
+          <Suspense fallback={<LoaderSpinner/>}>
+            <Aurora
+              colorStops={["#00C6FF", "#0072FF", "#3A29FF"]}
+              blend={0.4}
+              amplitude={1.01}
+              speed={0.5}
+            />
+          </Suspense>
+        </div>
 
         {/* Content */}
         <div className="relative z-10">
-
-        <h1 className="flex items-center justify-center text-center text-gray-100 text-5xl md:text-6xl font-serif text-primary my-6">
-          Travel Posts
-        </h1>
-        <p className="text-center text-2xl text-muted-foreground max-w-3xl mx-auto text-slate-200">
-          Discover amazing travel destinations, hidden gems, and unforgettable
-          experiences around the world.
-        </p>
+          <h1 className="flex items-center justify-center text-center text-gray-100 text-5xl md:text-6xl font-serif text-primary my-6">
+            Travel Posts
+          </h1>
+          <p className="text-center text-2xl text-muted-foreground max-w-3xl mx-auto text-slate-200">
+            Discover amazing travel destinations, hidden gems, and unforgettable
+            experiences around the world.
+          </p>
         </div>
 
         <Grid container spacing={4} padding={5} className="relative z-10">
@@ -117,10 +121,7 @@ const Explore = () => {
         </Grid>
       </div>
 
-      <Notification
-        message={message}
-        onClose={() => setMessage("")}
-      />
+      <Notification message={message} onClose={() => setMessage("")} />
     </React.Fragment>
   );
 };

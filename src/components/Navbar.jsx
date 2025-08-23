@@ -10,9 +10,10 @@ const Navbar = () => {
   const handleLogout = () => {
     logout();
   };
+
   return (
     <React.Fragment>
-      <nav className="bg-[#003580] px-5 py-4 my-0">
+      <nav className="bg-[#003580] px-5 py-4 my-0 ">
         <div className="flex items-center justify-between">
           <Link to="/">
             <h1 className="text-white font-medium text-3xl ">Travel Journal</h1>
@@ -20,13 +21,13 @@ const Navbar = () => {
           <div className="flex items-center content-center space-x-5">
             <Link
               to="/"
-              className="text-white font-normal text-xl hover:text-sky-200"
+              className="text-white font-medium text-xl hover:text-sky-200"
             >
               Home
             </Link>
             <Link
               to="/explore"
-              className="text-white font-normal text-xl hover:text-sky-200"
+              className="text-white font-medium text-xl hover:text-sky-200"
             >
               Explore
             </Link>
@@ -35,13 +36,13 @@ const Navbar = () => {
                 <>
                   <Link
                     to="/my-journal"
-                    className="text-white font-normal text-xl hover:text-sky-200 transition-colors"
+                    className="text-white font-medium text-xl hover:text-sky-200 transition-colors"
                   >
                     My Journal
                   </Link>
                   <Link
                     to="/add-trip"
-                    className="text-white font-normal text-xl hover:text-sky-200 transition-colors"
+                    className="text-white font-medium text-xl hover:text-sky-200 transition-colors"
                   >
                     Add Trip
                   </Link>
@@ -50,7 +51,7 @@ const Navbar = () => {
                 <>
                   <Link
                     to="/login"
-                    className="text-white font-normal text-xl hover:text-sky-200"
+                    className="text-white font-medium text-xl hover:text-sky-200"
                   >
                     Login
                   </Link>
@@ -58,7 +59,7 @@ const Navbar = () => {
               )}
             </div>
 
-            <div className="text-white font-normal text-xl hover:text-sky-100">
+            <div className="text-white font-medium text-xl hover:text-sky-100">
               {isAuthenticated && (
                 <button
                   onClick={() => {

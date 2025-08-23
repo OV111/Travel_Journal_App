@@ -76,18 +76,16 @@ const Home = () => {
         </div>
 
         <div className="relative grid justify-center items-center overflow-hidden  max-w-full mx-10">
-          <h1 className="text-4xl font-bold  pt-8">
-            {/* bg-gradient-to-r from-[#003580] to-[#00b4d8] bg-clip-text text-transparent */}
+          <h1 className="text-[2.8rem] font-bold text-[#033e91] pt-8">
             Popular Destinations
           </h1>
-          <p className="text-xl text-slate-600 text-muted-foreground max-w-4xl mx-auto pt-3 pb-8">
+          <p className="text-xl text-slate-600 text-muted-foreground max-w-4xl mx-auto pt-2 pb-8">
             Discover amazing places through the eyes of fellow travelers
           </p>
           <div className="flex gap-6 transition-transform duration-500">
             {Array.from({ length: 3 }).map((_, idx) => {
               const postIndex = (current + idx) % posts.length;
               const post = posts[postIndex];
-
               return (
                 <Card
                   key={post.id}
@@ -142,7 +140,7 @@ const Home = () => {
                       Read More
                     </Button>
                     {isAuthenticated && (
-                      <Button size="small"  onClick={() => addTrip(post)}>
+                      <Button size="small" onClick={() => addTrip(post)}>
                         Add to Journal
                       </Button>
                     )}
@@ -153,21 +151,21 @@ const Home = () => {
           </div>
         </div>
         <button
-          className="absolute top-222 left-3 text-3xl cursor-pointer "
+          className="absolute top-236 left-3 text-3xl cursor-pointer "
           onClick={prevSlide}
         >
           ❮
         </button>
         <button
-          className="absolute top-222 right-3 text-3xl cursor-pointer"
+          className="absolute top-236 right-3 text-3xl cursor-pointer"
           onClick={nextSlide}
         >
           ❯
         </button>
 
         <div>
-          <h1 className="text-4xl font-bold  pt-10">Travel Inspirations</h1>
-          <p className="text-xl text-slate-600 text-muted-foreground max-w-4xl mx-auto pt-3 pb-5">
+          <h1 className="text-[2.7rem] font-bold  text-[#033e91] pt-10">Travel Inspirations</h1>
+          <p className="text-[1.4rem] text-slate-600 text-muted-foreground max-w-4xl mx-auto pt-3 pb-5">
             Words that fuel Adventure
           </p>
           <div className="flex justify-center items-center text-center gap-10 py-4">

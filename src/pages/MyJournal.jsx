@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, lazy, Suspense } from "react";
 import TiltedCard from "../components/TitleCard";
-import Aurora from "../components/Aurora";
 import { TripsContext } from "../Context/TripsContext";
 import { Trash2 } from "lucide-react";
 
+const Aurora = lazy(() => import("../components/Aurora"));
 const MyJournal = () => {
   const { journalTrips, deleteTrip } = useContext(TripsContext);
 
@@ -11,12 +11,14 @@ const MyJournal = () => {
     <React.Fragment>
       <div className="relative w-full min-h-screen overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Aurora
-            colorStops={["#00C6FF", "#0072FF", "#3A29FF"]}
-            blend={0.4}
-            amplitude={1.01}
-            speed={0.5}
-          />
+          <Suspense fallback={<div>Aurora Loading...</div>}>
+            <Aurora
+              colorStops={["#00C6FF", "#0072FF", "#3A29FF"]}
+              blend={0.4}
+              amplitude={1.01}
+              speed={0.5}
+            />
+          </Suspense>
         </div>
 
         <div className="relative z-10">
