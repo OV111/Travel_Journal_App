@@ -1,4 +1,4 @@
-import FuzzyText from "./FuzzyText ";
+import FuzzyText from "./FuzzyText";
 
 const NotFound = () => {
   return (

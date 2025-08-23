@@ -66,7 +66,7 @@ const Home = () => {
             textAlign="center"
             onLetterAnimationComplete={handleAnimationComplete}
           />
-          <p className="text-3xl mb-4 font-semibold text-[#033e91] drop-shadow-md max-w-4xl mx-auto">
+          <p className="text-3xl mb-4 font-semibold text-[#033e91] drop-shadow-md max-w-4xl mx-auto">;
             Discover amazing travel experiences from fellow adventurers and
             inspire others with your travel stories
           </p>

@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import MyJournal from "./pages/MyJournal";
 import AddTrip from "./pages/AddTrip";
 import ProtectedRoutes from "./components/ProtectedRoutes";
+
 const App = () => {
   return (
     <AuthProvider>
