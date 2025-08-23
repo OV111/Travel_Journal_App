@@ -66,7 +66,7 @@ const Home = () => {
             textAlign="center"
             onLetterAnimationComplete={handleAnimationComplete}
           />
-          <p className="text-3xl mb-4 font-semibold text-[#033e91] drop-shadow-md max-w-4xl mx-auto">;
+          <p className="text-3xl mb-4 font-semibold text-[#033e91] drop-shadow-md max-w-4xl mx-auto">
             Discover amazing travel experiences from fellow adventurers and
             inspire others with your travel stories
           </p>
@@ -164,7 +164,9 @@ const Home = () => {
         </button>
 
         <div>
-          <h1 className="text-[2.7rem] font-bold  text-[#033e91] pt-10">Travel Inspirations</h1>
+          <h1 className="text-[2.7rem] font-bold  text-[#033e91] pt-10">
+            Travel Inspirations
+          </h1>
           <p className="text-[1.4rem] text-slate-600 text-muted-foreground max-w-4xl mx-auto pt-3 pb-5">
             Words that fuel Adventure
           </p>
