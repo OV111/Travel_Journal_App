@@ -33,6 +33,7 @@ To get started with the Travel Journal app, follow these steps:
    npm install
    npm run dev
    ```
-
+## Diagram 
+![Travel Journal Diagram](./src/assets/diagram.png)
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
