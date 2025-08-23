@@ -20,8 +20,8 @@ const Login = () => {
     } else {
       console.log("username or password is incorrect.")
     }
-    console.log(isAuthenticated);
-    console.log(username, password);
+    // console.log(isAuthenticated);
+    // console.log(username, password);
   };
   return (
     <div className=" bg-gray-200 justify-center items-center space-y-6 w-100 min-h-85 mx-auto my-20 px-8 rounded-2xl">
