@@ -13,6 +13,13 @@ const TripsProvider = ({ children }) => {
     localStorage.setItem("journalTrips", JSON.stringify(journalTrips));
   }, [journalTrips]);
 
+  useEffect(() => {
+    fetch("https://68b09a013b8db1ae9c047952.mockapi.io/journals")
+      .then((res) => res.json())
+      .then((data) => setPosts(data))
+      .catch((err) => console.error("Error of fetching journals", err));
+  }, []);
+
   const addTrip = (trip) => {
     setJournalTrips((prev) => {
       if (!prev.find((t) => t.id === trip.id)) return [...prev, trip];
@@ -34,11 +41,9 @@ const TripsProvider = ({ children }) => {
 
   return (
     // <Suspense>
-      <TripsContext.Provider
-        value={{ posts, journalTrips, addTrip, deleteTrip }}
-      >
-        {children}
-      </TripsContext.Provider>
+    <TripsContext.Provider value={{ posts, journalTrips, addTrip, deleteTrip }}>
+      {children}
+    </TripsContext.Provider>
     // </Suspense>
   );
 };
