@@ -5,7 +5,7 @@ import { initialPosts } from "../data/posts";
 const Aurora = lazy(() => import("../components/Aurora"));
 
 const AddTrip = () => {
-  const { trips, addTrip } = useContext(TripsContext);
+  const {  addTrip } = useContext(TripsContext);
   const [destination, setDestination] = useState("");
   const [location, setLocation] = useState("");
   const [date, setDate] = useState(null);
