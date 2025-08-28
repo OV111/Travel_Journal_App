@@ -1,5 +1,6 @@
 import React, { useContext, useState, lazy, Suspense } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+// import {useNavigate} from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -18,7 +19,7 @@ const Aurora = lazy(() => {
 });
 
 const Explore = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { isAuthenticated } = useContext(AuthContext);
   const { posts, addTrip } = useContext(TripsContext);
   const [message, setMessage] = useState("");
