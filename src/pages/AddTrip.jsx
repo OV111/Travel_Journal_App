@@ -25,6 +25,12 @@ const AddTrip = () => {
     };
     initialPosts.push(newTrip);
     addTrip(newTrip);
+
+    setDestination("")
+    setLocation("")
+    setDate(null)
+    setImage(null)
+    setDescription("")
   };
 
   const handleFileChange = (e) => {
@@ -35,6 +41,8 @@ const AddTrip = () => {
     }
   };
 
+  // !Add react-hot-toast
+  
   return (
     <div className="relative min-h-screen overflow-hidden bg-gray-50">
       {/* Aurora Background */}
@@ -61,6 +69,7 @@ const AddTrip = () => {
 
           <input
             type="text"
+            value={destination}
             placeholder="Share Destination name"
             className="w-full px-4 py-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
             onChange={(e) => setDestination(e.target.value)}
@@ -68,6 +77,7 @@ const AddTrip = () => {
           />
           <input
             type="text"
+            value={location}
             placeholder="Share Exact Location"
             className="w-full px-4 py-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
             onChange={(e) => setLocation(e.target.value)}
@@ -77,12 +87,14 @@ const AddTrip = () => {
           <div className="flex gap-4 mb-4">
             <input
               type="date"
+              value={date || ""}
               className="flex-1 w-[100px] px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition cursor-pointer"
               onChange={(e) => setDate(e.target.value)}
               required
             />
             <input
               type="file"
+              // value=""
               className="flex-1 w-[300px] px-4 py-3 border border-gray-300 rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400 transition file:py-2 file:px-4 file:bg-blue-600 file:text-white file:rounded-full hover:file:bg-blue-700"
               onChange={handleFileChange}
               required
@@ -92,6 +104,7 @@ const AddTrip = () => {
           <textarea
             placeholder="Enter Description of the Trip"
             rows={4}
+            value={description}
             className="w-full px-4 py-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition resize-none"
             onChange={(e) => setDescription(e.target.value)}
             required
