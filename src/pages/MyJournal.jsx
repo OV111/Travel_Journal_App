@@ -1,11 +1,12 @@
-import React, { useContext, lazy, Suspense } from "react";
+import React, { lazy, Suspense } from "react";
 import TiltedCard from "../components/TitleCard";
-import { TripsContext } from "../Context/TripsContext";
+import useTripsStore from "../Context/useTripsStore";
 import { Trash2 } from "lucide-react";
 
 const Aurora = lazy(() => import("../components/Aurora"));
+
 const MyJournal = () => {
-  const { journalTrips, deleteTrip } = useContext(TripsContext);
+  const { journal, deleteTrip } = useTripsStore();
 
   return (
     <React.Fragment>
@@ -30,13 +31,13 @@ const MyJournal = () => {
             around the world
           </p>
 
-          {journalTrips.length === 0 ? (
+          {journal.length === 0 ? (
             <p className="text-gray-100 items-center justify-center text-center text-3xl font-bold my-19">
               No Trips yet. Add some from Explore!
             </p>
           ) : (
             <ul className="mt-6 space-y-4">
-              {journalTrips.map((post) => (
+              {journal.map((post) => (
                 <li
                   key={post.id}
                   className="bg-slate-200 border-0 p-4 w-300 rounded-2xl mx-30 my-6 shadow"
