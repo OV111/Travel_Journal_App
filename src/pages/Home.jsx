@@ -6,7 +6,6 @@ import { AuthContext } from "../Context/AuthContext";
 import { TripsContext } from "../Context/TripsContext";
 import SplitText from "../components/SplitText";
 
-import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -15,13 +14,14 @@ import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
 
 const travelQuotes = [
-  {
-    quote: "Travel is the only thing you buy that makes you richer",
-    author: "Anonymous",
-  },
+  {quote: "Travel is the only thing you buy that makes you richer",author: "Anonymous",},
   { quote: "Adventure awaits those who seek it", author: "Explorer's Wisdom" },
   { quote: "Collect moments, not things", author: "Travel Philosophy" },
-  // {}
+  {quote:"The world is a book, and those who do not travel read only one page",author: "Saint Augustine",},
+  { quote: "Not all those who wander are lost", author: "J.R.R. Tolkien" },
+  { quote: "Life is short and the world is wide", author: "Unknown" },
+  { quote: "To travel is to live", author: "Hans Christian Andersen" },
+  { quote: "Travel far enough, you meet yourself", author: "David Mitchell" },
 ];
 
 const handleAnimationComplete = () => {
@@ -36,7 +36,6 @@ const Home = () => {
   const nextSlide = () => {
     setCurrent((prev) => (prev + 1) % posts.length);
   };
-
   const prevSlide = () => {
     setCurrent((prev) => (prev - 1 + posts.length) % posts.length);
   };
@@ -70,9 +69,11 @@ const Home = () => {
             Discover amazing travel experiences from fellow adventurers and
             inspire others with your travel stories
           </p>
-          <button className="font-medium text-xl mt-3 mb-38 px-6 py-3 bg-blue-600 text-white rounded-lg cursor-pointer hover:bg-[#003580] transition-colors duration-300 ease-in-out">
-            <Link to="/login">Start Your Adventure</Link>
-          </button>
+          <Link to={"/login"}>
+            <button className="font-medium text-xl mt-3 mb-38 px-6 py-3 bg-blue-600 text-white rounded-lg cursor-pointer hover:bg-[#003580] transition-colors duration-300 ease-in-out">
+              Start Your Adventure
+            </button>
+          </Link>
         </div>
 
         <div className="relative grid justify-center items-center overflow-hidden  max-w-full mx-10">
@@ -111,7 +112,7 @@ const Home = () => {
                       align="center"
                       sx={{ mb: 0.5 }}
                     >
-                      {post.title}
+                      {post.title.toUpperCase()}
                     </Typography>
                     <Typography
                       variant="body2"
@@ -151,13 +152,13 @@ const Home = () => {
           </div>
         </div>
         <button
-          className="absolute top-236 left-3 text-3xl cursor-pointer "
+          className="absolute top-240 left-3 text-3xl cursor-pointer "
           onClick={prevSlide}
         >
           ❮
         </button>
         <button
-          className="absolute top-236 right-3 text-3xl cursor-pointer"
+          className="absolute top-240 right-3 text-3xl cursor-pointer"
           onClick={nextSlide}
         >
           ❯
@@ -170,13 +171,15 @@ const Home = () => {
           <p className="text-[1.4rem] text-slate-600 text-muted-foreground max-w-4xl mx-auto pt-3 pb-5">
             Words that fuel Adventure
           </p>
-          <div className="flex justify-center items-center text-center gap-10 py-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 py-4 justify-items-center">
             {travelQuotes.map((quote) => (
               <Card
                 key={quote.id}
                 sx={{
-                  height: 130,
-                  width: 430,
+                  height: "auto",
+                  minHeight: 50,
+                  width: "100%",
+                  maxWidth: 320,
                   borderRadius: "20px",
                   boxShadow: 0,
                   px: 2,
@@ -186,14 +189,16 @@ const Home = () => {
                 <CardContent className="text-center px-10">
                   <Typography
                     gutterBottom
-                    variant="h5"
+                    variant="body1"
                     align="center"
                     textAlign={"center"}
-                    sx={{ mb: 0.5 }}
+                    sx={{ fontSize: "0.98rem", lineHeight: 1.4 }}
                   >
                     {quote.quote}
                   </Typography>
-                  <Typography>{quote.author}</Typography>
+                  <Typography sx={{ fontSize: "1.25rem", mb: 0, mt: 2 }}>
+                    {quote.author}
+                  </Typography>
                 </CardContent>
               </Card>
             ))}
