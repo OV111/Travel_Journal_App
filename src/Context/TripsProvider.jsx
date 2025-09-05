@@ -1,6 +1,5 @@
-import React, { useEffect, useState, lazy, Suspense } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { TripsContext } from "./TripsContext";
-// const initialPosts = lazy(() => import("../data/posts"));
 import { initialPosts } from "../data/posts";
 const TripsProvider = ({ children }) => {
   const [posts, setPosts] = useState(initialPosts);
@@ -40,11 +39,14 @@ const TripsProvider = ({ children }) => {
   };
 
   return (
-    // <Suspense>
-    <TripsContext.Provider value={{ posts, journalTrips, addTrip, deleteTrip }}>
-      {children}
-    </TripsContext.Provider>
-    // </Suspense>
+    <React.Fragment>
+      <TripsContext.Provider
+        value={{ posts, journalTrips, addTrip, deleteTrip }}
+      >
+        {children}
+      </TripsContext.Provider>
+    </React.Fragment>
   );
 };
+
 export default TripsProvider;
