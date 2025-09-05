@@ -1,6 +1,5 @@
-import React, { useContext, useState, lazy, Suspense } from "react";
+import React, { useContext, useState, lazy, Suspense,useEffect } from "react";
 import { Link } from "react-router-dom";
-// import {useNavigate} from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -8,21 +7,24 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
-
 import { AuthContext } from "../Context/AuthContext";
-import { TripsContext } from "../Context/TripsContext";
-import Notification from "../components/Notification";
 import LoaderSpinner from "../components/LoaderSpinner";
+import useTripsStore from "../Context/useTripsStore";
+
+const Notification = lazy(() => import("../components/Notification"))
 
 const Aurora = lazy(() => {
   return import("../components/Aurora");
 });
 
 const Explore = () => {
-  // const navigate = useNavigate();
   const { isAuthenticated } = useContext(AuthContext);
-  const { posts, addTrip } = useContext(TripsContext);
+  const { posts, addTrip, fetchPosts } = useTripsStore();
   const [message, setMessage] = useState("");
+
+   useEffect(() => {
+    fetchPosts();
+  }, [fetchPosts]);
 
   const handleAddTrip = (post) => {
     addTrip(post);
@@ -83,7 +85,7 @@ const Explore = () => {
                   textAlign="center"
                   sx={{ mb: 0.5 }}
                 >
-                  {post.title}
+                  {post.title.toUpperCase()}
                 </Typography>
                 <Typography
                   variant="body2"
@@ -119,6 +121,7 @@ const Explore = () => {
               </CardActions>
             </Card>
           ))}
+
         </Grid>
       </div>
 
