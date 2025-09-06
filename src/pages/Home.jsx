@@ -1,9 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
 import AirplaneWindow from "../assets/AirplaneWindow.png";
 import { AuthContext } from "../Context/AuthContext";
-import { TripsContext } from "../Context/TripsContext";
+
+import useAuthStore from "../Context/useAuthStore";
+import useTripsStore from "../Context/useTripsStore";
+
+// import { TripsContext } from "../Context/TripsContext";
 import SplitText from "../components/SplitText";
 
 import Card from "@mui/material/Card";
@@ -14,10 +17,17 @@ import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
 
 const travelQuotes = [
-  {quote: "Travel is the only thing you buy that makes you richer",author: "Anonymous",},
+  {
+    quote: "Travel is the only thing you buy that makes you richer",
+    author: "Anonymous",
+  },
   { quote: "Adventure awaits those who seek it", author: "Explorer's Wisdom" },
   { quote: "Collect moments, not things", author: "Travel Philosophy" },
-  {quote:"The world is a book, and those who do not travel read only one page",author: "Saint Augustine",},
+  {
+    quote:
+      "The world is a book, and those who do not travel read only one page",
+    author: "Saint Augustine",
+  },
   { quote: "Not all those who wander are lost", author: "J.R.R. Tolkien" },
   { quote: "Life is short and the world is wide", author: "Unknown" },
   { quote: "To travel is to live", author: "Hans Christian Andersen" },
@@ -29,20 +39,32 @@ const handleAnimationComplete = () => {
 };
 
 const Home = () => {
-  const { isAuthenticated, addTrip } = useContext(AuthContext);
-  const { posts } = useContext(TripsContext);
+  const { auth } = useAuthStore();
+  const addTrip = useTripsStore().addTrip;
+  const posts = useTripsStore().posts;
+
+  const fetchPosts = useTripsStore().fetchPosts;
+  // const { posts } = useContext(TripsContext);
   const [current, setCurrent] = useState(0);
 
   const nextSlide = () => {
-    setCurrent((prev) => (prev + 1) % posts.length);
+    if (posts.length > 0) {
+      setCurrent((prev) => (prev + 1) % posts.length);
+    }
   };
   const prevSlide = () => {
-    setCurrent((prev) => (prev - 1 + posts.length) % posts.length);
+    if (posts.length > 0) {
+      setCurrent((prev) => (prev - 1 + posts.length) % posts.length);
+    }
   };
 
-  // useEffect(() => {
-  //   setCurrent(0)
-  // }, [posts.length]);
+  useEffect(() => {
+    setCurrent(0);
+  }, [posts.length]);
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
 
   return (
     <React.Fragment>
@@ -83,73 +105,78 @@ const Home = () => {
           <p className="text-xl text-slate-600 text-muted-foreground max-w-4xl mx-auto pt-2 pb-8">
             Discover amazing places through the eyes of fellow travelers
           </p>
-          <div className="flex gap-6 transition-transform duration-500">
-            {Array.from({ length: 3 }).map((_, idx) => {
-              const postIndex = (current + idx) % posts.length;
-              const post = posts[postIndex];
-              return (
-                <Card
-                  key={post.id}
-                  sx={{
-                    minWidth: 300,
-                    maxWidth: 450,
-                    borderRadius: "20px",
-                    boxShadow: 0,
-                  }}
-                  variant="outlined"
-                >
-                  <CardMedia
-                    component="img"
-                    height="200"
-                    image={post.image}
-                    alt="post image"
-                    sx={{ height: 200 }}
-                  />
-                  <CardContent>
-                    <Typography
-                      gutterBottom
-                      variant="h5"
-                      align="center"
-                      sx={{ mb: 0.5 }}
-                    >
-                      {post.title.toUpperCase()}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="text.secondary"
-                      textAlign="center"
-                      sx={{ mb: 1 }}
-                    >
-                      {post.location} •{" "}
-                      {new Date(post.date).toLocaleDateString()}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      maxHeight={400}
-                      px={6}
-                      textAlign={"center"}
-                    >
-                      {post.shortDescription}
-                    </Typography>
-                  </CardContent>
-                  <CardActions className="ml-6 gap-30">
-                    <Button
-                      size="small"
-                      component={Link}
-                      to={`/explore/${post.id}`}
-                    >
-                      Read More
-                    </Button>
-                    {isAuthenticated && (
-                      <Button size="small" onClick={() => addTrip(post)}>
-                        Add to Journal
+
+          {!posts || posts.length === 0 ? (
+            <p className="text-lg text-gray-500 pb-8">No posts available</p>
+          ) : (
+            <div className="flex gap-6 transition-transform duration-500">
+              {Array.from({ length: 3 }).map((_, idx) => {
+                const postIndex = (current + idx) % posts.length;
+                const post = posts[postIndex];
+                return (
+                  <Card
+                    key={post.id}
+                    sx={{
+                      minWidth: 300,
+                      maxWidth: 450,
+                      borderRadius: "20px",
+                      boxShadow: 0,
+                    }}
+                    variant="outlined"
+                  >
+                    <CardMedia
+                      component="img"
+                      height="200"
+                      image={post.image}
+                      alt={post.title}
+                      sx={{ height: 200 }}
+                    />
+                    <CardContent>
+                      <Typography
+                        gutterBottom
+                        variant="h5"
+                        align="center"
+                        sx={{ mb: 0.5 }}
+                      >
+                        {post.title.toUpperCase()}
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        color="text.secondary"
+                        textAlign="center"
+                        sx={{ mb: 1 }}
+                      >
+                        {post.location} •{" "}
+                        {new Date(post.date).toLocaleDateString()}
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        maxHeight={400}
+                        px={6}
+                        textAlign={"center"}
+                      >
+                        {post.shortDescription}
+                      </Typography>
+                    </CardContent>
+                    <CardActions className="ml-6 gap-30">
+                      <Button
+                        size="small"
+                        component={Link}
+                        to={`/explore/${post.id}`}
+                      >
+                        Read More
                       </Button>
-                    )}
-                  </CardActions>
-                </Card>
-              );
-            })}
-          </div>
+                      {auth && (
+                        <Button size="small" onClick={() => addTrip(post)}>
+                          Add to Journal
+                        </Button>
+                      )}
+                    </CardActions>
+                  </Card>
+                );
+              })}
+            </div>
+          )}
         </div>
         <button
           className="absolute top-240 left-3 text-3xl cursor-pointer "
