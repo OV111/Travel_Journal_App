@@ -4,6 +4,7 @@ import tripService from "../service/tripsService";
 
 const useTripsStore = create((set, get) => ({
   posts: [],
+  selectedPost: null,
   journal: JSON.parse(localStorage.getItem("journalTrips")) || [],
 
   fetchPosts: async () => {
@@ -14,7 +15,14 @@ const useTripsStore = create((set, get) => ({
       console.error(err);
     }
   },
-
+  fetchPostsWithID: async (id) => {
+    try {
+      let data = await tripService.getTripById(id);
+      set({ selectedPost: data });
+    } catch (err) {
+      console.error(err);
+    }
+  },
   addTrip: (trip) => {
     const { journal, posts } = get();
     if (!journal.find((t) => t.id === trip.id)) {
