@@ -4,10 +4,13 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
 import { Navigate } from "react-router-dom";
 import Button from "@mui/material/Button";
+import {toast} from "react-toastify"
+import useAuthStore from "../Context/useAuthStore";
 const Navbar = () => {
   // const [theme, setTheme] = useState();
-  const { isAuthenticated,  logout } = useContext(AuthContext);
+  const {auth, login,logout} = useAuthStore()
   const handleLogout = () => {
+    toast.success("Logged Out",{duration:800})
     logout();
   };
 
@@ -32,7 +35,7 @@ const Navbar = () => {
               Explore
             </Link>
             <div className="flex items-center  justify-center space-x-4">
-              {isAuthenticated ? (
+              {auth ? (
                 <>
                   <Link
                     to="/my-journal"
@@ -60,7 +63,7 @@ const Navbar = () => {
             </div>
 
             <div className="text-white font-medium text-xl hover:text-sky-100">
-              {isAuthenticated && (
+              {auth && (
                 <button
                   onClick={() => {
                     handleLogout();
