@@ -30,8 +30,6 @@ const travelQuotes = [
   },
   { quote: "Not all those who wander are lost", author: "J.R.R. Tolkien" },
   { quote: "Life is short and the world is wide", author: "Unknown" },
-  { quote: "To travel is to live", author: "Hans Christian Andersen" },
-  { quote: "Travel far enough, you meet yourself", author: "David Mitchell" },
 ];
 
 const handleAnimationComplete = () => {
@@ -64,7 +62,7 @@ const Home = () => {
 
   useEffect(() => {
     fetchPosts();
-  }, []);
+  }, [fetchPosts]);
 
   return (
     <React.Fragment>
@@ -75,7 +73,7 @@ const Home = () => {
         >
           <SplitText
             text="Welcome to Travel Journal"
-            className="text-[5.5rem] font-bold mt-0 text-[#033e91] drop-shadow-md z-3"
+           className="text-3xl sm:text-5xl md:text-6xl lg:text-[6rem] font-bold mt-0 py-3 text-[#033e91] drop-shadow-md z-3"
             delay={100}
             duration={0.5}
             ease="power3.out"
@@ -87,22 +85,22 @@ const Home = () => {
             textAlign="center"
             onLetterAnimationComplete={handleAnimationComplete}
           />
-          <p className="text-3xl mb-4 font-semibold text-[#033e91] drop-shadow-md max-w-4xl mx-auto">
+          <p className="text-xl sm:text-2xl md:text-3xl lg:text-3xl mb-4 font-semibold text-[#033e91] drop-shadow-md max-w-4xl mx-auto">
             Discover amazing travel experiences from fellow adventurers and
             inspire others with your travel stories
           </p>
           <Link to={"/login"}>
-            <button className="font-medium text-xl mt-3 mb-38 px-6 py-3 bg-blue-600 text-white rounded-lg cursor-pointer hover:bg-[#003580] transition-colors duration-300 ease-in-out">
+            <button className="font-medium text-base sm:text-xl md:text-xl lg:text-2xl  mt-3 mb-38 px-6 py-3 bg-blue-600 text-white rounded-lg cursor-pointer hover:bg-[#003580] transition-colors duration-300 ease-in-out">
               Start Your Adventure
             </button>
           </Link>
         </div>
 
         <div className="relative grid justify-center items-center overflow-hidden  max-w-full mx-10">
-          <h1 className="text-[2.8rem] font-bold text-[#033e91] pt-8">
+          <h1 className="text-[2.9rem] font-bold text-[#033e91] pt-8">
             Popular Destinations
           </h1>
-          <p className="text-xl text-slate-600 text-muted-foreground max-w-4xl mx-auto pt-2 pb-8">
+          <p className="text-[1.4rem] text-slate-600 text-muted-foreground max-w-4xl mx-auto pt-2 pb-8">
             Discover amazing places through the eyes of fellow travelers
           </p>
 
@@ -192,13 +190,13 @@ const Home = () => {
         </button>
 
         <div>
-          <h1 className="text-[2.7rem] font-bold  text-[#033e91] pt-10">
+          <h1 className="text-[2.9rem] font-bold  text-[#033e91] pt-10">
             Travel Inspirations
           </h1>
           <p className="text-[1.4rem] text-slate-600 text-muted-foreground max-w-4xl mx-auto pt-3 pb-5">
-            Words that fuel Adventure
+            Inspiration to Fuel Your Travel Dreams and Adventures
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 py-4 justify-items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3  py-4 justify-items-center">
             {travelQuotes.map((quote) => (
               <Card
                 key={quote.id}
@@ -214,6 +212,9 @@ const Home = () => {
                 variant="outlined"
               >
                 <CardContent className="text-center px-10">
+                  <Typography sx={{ fontSize: "1.25rem", mb: 0, mt: 2 }}>
+                    {quote.author}
+                  </Typography>
                   <Typography
                     gutterBottom
                     variant="body1"
@@ -222,9 +223,6 @@ const Home = () => {
                     sx={{ fontSize: "0.98rem", lineHeight: 1.4 }}
                   >
                     {quote.quote}
-                  </Typography>
-                  <Typography sx={{ fontSize: "1.25rem", mb: 0, mt: 2 }}>
-                    {quote.author}
                   </Typography>
                 </CardContent>
               </Card>
