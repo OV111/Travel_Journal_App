@@ -10,6 +10,7 @@ import Button from "@mui/material/Button";
 import { AuthContext } from "../Context/AuthContext";
 import LoaderSpinner from "../components/LoaderSpinner";
 import useTripsStore from "../Context/useTripsStore";
+import useAuthStore from "../Context/useAuthStore";
 
 const Notification = lazy(() => import("../components/Notification"))
 
@@ -18,7 +19,8 @@ const Aurora = lazy(() => {
 });
 
 const Explore = () => {
-  const { isAuthenticated } = useContext(AuthContext);
+  // const { isAuthenticated } = useContext(AuthContext);
+  const {auth} = useAuthStore()
   const { posts, addTrip, fetchPosts } = useTripsStore();
   const [message, setMessage] = useState("");
 
@@ -48,7 +50,7 @@ const Explore = () => {
 
         {/* Content */}
         <div className="relative z-10">
-          <h1 className="flex items-center justify-center text-center text-gray-100 text-5xl md:text-6xl font-serif text-primary my-6">
+          <h1 className="flex items-center font-bold justify-center text-center text-gray-100 text-5xl md:text-6xl  text-primary my-6">
             Travel Posts
           </h1>
           <p className="text-center text-2xl text-muted-foreground max-w-3xl mx-auto text-slate-200">
@@ -109,7 +111,8 @@ const Explore = () => {
                   Read More
                 </Button>
 
-                {isAuthenticated && (
+                {auth
+                 && (
                   <Button
                     size="small"
                     sx={{ px: 2 }}
