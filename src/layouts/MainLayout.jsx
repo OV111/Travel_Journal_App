@@ -19,7 +19,7 @@ const MainLayout = () => {
   }, []);
   return (
     <div className="bg-zinc-100 py-0">
-      <ToastContainer
+      {/* <ToastContainer
         position="top-center"
         autoClose={2000}
         hideProgressBar={false}
@@ -28,7 +28,7 @@ const MainLayout = () => {
         pauseOnHover
         draggable
         theme="light"
-      />
+      /> */}
       <Navbar />
       <div>
         <Outlet />
