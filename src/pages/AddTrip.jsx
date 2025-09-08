@@ -3,11 +3,13 @@ import { TripsContext } from "../Context/TripsContext";
 import { initialPosts } from "../data/posts";
 import { ToastContainer, toast } from "react-toastify";
 import { useRef } from "react";
+import useTripsStore from "../Context/useTripsStore";
 
 const Aurora = lazy(() => import("../components/Aurora"));
 
 const AddTrip = () => {
-  const { addTrip } = useContext(TripsContext);
+  // const { addTrip } = useContext(TripsContext);
+  const {addTrip} = useTripsStore()
   const [destination, setDestination] = useState("");
   const [location, setLocation] = useState("");
   const [date, setDate] = useState(null);

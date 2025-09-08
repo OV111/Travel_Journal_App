@@ -1,12 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
 import { toast } from "react-toastify";
+import useAuthStore from "../Context/useAuthStore";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { login } = useContext(AuthContext);
+  const { login } = useAuthStore();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [userError, setUserError] = useState(false);
@@ -14,12 +15,15 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const loginSuccess = login(username, password);
     if (username.trim().length >= 3 && password.length >= 6) {
-      if (login(username, password)) {
-        toast.success("User Logged In", { duration: 800 });
+      if (loginSuccess) {
+        toast.success("User Logged In", { autoClose: 800 });
         setTimeout(() => {
           navigate("/my-journal");
         }, 1200);
+      } else {
+        toast.error("Error with login");
       }
     } else {
       console.log("username or password is incorrect.");
