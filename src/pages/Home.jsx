@@ -73,9 +73,8 @@ const Home = () => {
         >
           <SplitText
             text="Welcome to Travel Journal"
-           className="text-xl sm:text-5xl md:text-6xl lg:text-[6rem] font-bold mt-0 py-3 text-[#033e91] drop-shadow-md z-3"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-[6rem] font-bold mt-0 py-3 text-[#033e91] drop-shadow-md z-3"
             delay={100}
-            
             duration={0.5}
             ease="power3.out"
             splitType="chars"
@@ -97,18 +96,20 @@ const Home = () => {
           </Link>
         </div>
 
-        <div className="relative grid justify-center items-center overflow-hidden  max-w-full mx-10">
-          <h1 className="text-[2.9rem] font-bold text-[#033e91] pt-8">
+        <div className="relative grid justify-center items-center overflow-hidden  max-w-full mx-10 mt-3">
+          <h1 className="text-3xl sm:text-5xl md:text-5xl lg:text-[2.7rem] font-bold text-[#033e91] pt-8">
             Popular Destinations
           </h1>
-          <p className="text-[1.4rem] text-slate-600 text-muted-foreground max-w-4xl mx-auto pt-2 pb-8">
+          <p className="text-sm sm:text-sm md:text-2xl lg:text-[1.4rem] text-slate-600  max-w-4xl mx-auto pt-2 pb-8">
             Discover amazing places through the eyes of fellow travelers
           </p>
 
           {!posts || posts.length === 0 ? (
-            <p className="text-lg text-gray-500 pb-8">No posts available</p>
+            <p className="text-lg text-center text-gray-500 pb-8">
+              No posts available
+            </p>
           ) : (
-            <div className="flex gap-6 transition-transform duration-500">
+            <div className="flex sm:flex-row sm:gap-14  md:gap-6 lg:gap-6 w-full gap-6 transition-transform duration-500">
               {Array.from({ length: 3 }).map((_, idx) => {
                 const postIndex = (current + idx) % posts.length;
                 const post = posts[postIndex];
@@ -116,8 +117,10 @@ const Home = () => {
                   <Card
                     key={post.id}
                     sx={{
-                      minWidth: 300,
-                      maxWidth: 450,
+                      minWidth: { xs: 280, sm: 300, md: 350, lg: 430,  xl: 570, },
+                      maxWidth: { xs: 320, sm: 360, md: 400, lg: 550,  xl: 650,},
+                      // minWidth: 420,
+                      // maxWidth: 500,
                       borderRadius: "20px",
                       boxShadow: 0,
                     }}
@@ -125,10 +128,10 @@ const Home = () => {
                   >
                     <CardMedia
                       component="img"
-                      height="200"
+                      height="300"
                       image={post.image}
                       alt={post.title}
-                      sx={{ height: 200 }}
+                      sx={{ height: 230 }}
                     />
                     <CardContent>
                       <Typography
@@ -190,14 +193,14 @@ const Home = () => {
           ❯
         </button>
 
-        <div>
-          <h1 className="text-[2.9rem] font-bold  text-[#033e91] pt-10">
+        <div className="mb-14 mt-3">
+          <h1 className="text-3xl sm:text-5xl md:text-5xl lg:text-[2.7rem] font-bold text-[#033e91] pt-8 ">
             Travel Inspirations
           </h1>
           <p className="text-[1.4rem] text-slate-600 text-muted-foreground max-w-4xl mx-auto pt-3 pb-5">
             Inspiration to Fuel Your Travel Dreams and Adventures
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3  py-4 justify-items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 mx-8 lg:grid-cols-3 gap-3 py-4 justify-items-center">
             {travelQuotes.map((quote) => (
               <Card
                 key={quote.id}
@@ -205,7 +208,8 @@ const Home = () => {
                   height: "auto",
                   minHeight: 50,
                   width: "100%",
-                  maxWidth: 320,
+                  // maxWidth: 430,
+                  maxWidth: { xs: 280, sm: 300, md: 320, lg:430,xl:550 },
                   borderRadius: "20px",
                   boxShadow: 0,
                   px: 2,
@@ -216,6 +220,7 @@ const Home = () => {
                   <Typography sx={{ fontSize: "1.25rem", mb: 0, mt: 2 }}>
                     {quote.author}
                   </Typography>
+
                   <Typography
                     gutterBottom
                     variant="body1"
