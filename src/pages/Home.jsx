@@ -75,6 +75,7 @@ const Home = () => {
             text="Welcome to Travel Journal"
            className="text-xl sm:text-5xl md:text-6xl lg:text-[6rem] font-bold mt-0 py-3 text-[#033e91] drop-shadow-md z-3"
             delay={100}
+            
             duration={0.5}
             ease="power3.out"
             splitType="chars"
