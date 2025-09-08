@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { Send } from "lucide-react";
 const Footer = () => {
   return (
@@ -16,7 +16,9 @@ const Footer = () => {
           </div>
 
           <div className="px-10">
-            <h4 className="text-xl font-medium text-[#003580] mb-4">Quick Links</h4>
+            <h4 className="text-xl font-medium text-[#003580] mb-4">
+              Quick Links
+            </h4>
             <ul className="space-y-2  text-gray-600">
               <li>
                 <a href="/" className="hover:text-[#003580] transition-colors">
@@ -43,7 +45,9 @@ const Footer = () => {
           </div>
 
           <div className="px-2">
-            <h4 className="text-xl font-medium text-[#003580] mb-4 ">Connect</h4>
+            <h4 className="text-xl font-medium text-[#003580] mb-4 ">
+              Connect
+            </h4>
             <ul className="space-y-2  text-gray-600">
               <li>
                 <a href="#" className="hover:text-[#003580] transition-colors">
