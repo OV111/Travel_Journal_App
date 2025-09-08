@@ -11,13 +11,9 @@ import router from "./router";
 const App = () => {
   return (
     <React.Fragment>
-      <AuthProvider>
-        <TripsProvider>
-          <Suspense fallback={<LoaderSpinner />}>
-            <RouterProvider router={router} />
-          </Suspense>
-        </TripsProvider>
-      </AuthProvider>
+      <Suspense fallback={<LoaderSpinner />}>
+        <RouterProvider router={router} />
+      </Suspense>
     </React.Fragment>
   );
 
