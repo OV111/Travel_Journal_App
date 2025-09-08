@@ -23,7 +23,7 @@ const MyJournal = () => {
         </div>
 
         <div className="relative z-10">
-          <h1 className="items-center justify-center text-center text-gray-100 text-5xl md:text-6xl font-serif text-primary my-6">
+          <h1 className="items-center justify-center text-center font-bold text-gray-100 text-5xl md:text-6xl text-primary my-6">
             My Journal of Trips
           </h1>
           <p className="text-center text-2xl text-muted-foreground max-w-3xl mx-auto text-slate-200">
