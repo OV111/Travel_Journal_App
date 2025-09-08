@@ -19,18 +19,18 @@ const Navbar = () => {
       <nav className="bg-[#003580] px-5 py-4 my-0 ">
         <div className="flex items-center justify-between">
           <Link to="/">
-            <h1 className="text-white font-medium text-3xl ">Travel Journal</h1>
+            <h1 className="text-white font-medium text-1xl sm:text-3xl md:text-text-4xl lg:text-4xl">Travel Journal</h1>
           </Link>
           <div className="flex items-center content-center space-x-5">
             <Link
               to="/"
-              className="text-white font-medium text-xl hover:text-sky-200"
+              className="text-white font-medium hover:text-sky-200 text-xl sm:text-3xl md:text-text-4xl lg:text-xl"
             >
               Home
             </Link>
             <Link
               to="/explore"
-              className="text-white font-medium text-xl hover:text-sky-200"
+              className="text-white font-medium text-xl sm:text-3xl md:text-text-4xl lg:text-xl hover:text-sky-200"
             >
               Explore
             </Link>
@@ -39,13 +39,13 @@ const Navbar = () => {
                 <>
                   <Link
                     to="/my-journal"
-                    className="text-white font-medium text-xl hover:text-sky-200 transition-colors"
+                    className="text-white font-medium text-xl sm:text-3xl md:text-text-4xl lg:text-xl hover:text-sky-200 transition-colors"
                   >
                     My Journal
                   </Link>
                   <Link
                     to="/add-trip"
-                    className="text-white font-medium text-xl hover:text-sky-200 transition-colors"
+                    className="text-white font-medium text-xl sm:text-3xl md:text-text-4xl lg:text-xl hover:text-sky-200 transition-colors"
                   >
                     Add Trip
                   </Link>
@@ -54,7 +54,7 @@ const Navbar = () => {
                 <>
                   <Link
                     to="/login"
-                    className="text-white font-medium text-xl hover:text-sky-200"
+                    className="text-white font-medium text-xl text-1xl sm:text-3xl md:text-text-xl lg:text-xl hover:text-sky-200"
                   >
                     Login
                   </Link>
