@@ -1,14 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 // import { useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
 import { Navigate } from "react-router-dom";
 import Button from "@mui/material/Button";
-import {toast} from "react-toastify"
+import {Toaster, toast} from "react-hot-toast"
 import useAuthStore from "../Context/useAuthStore";
 const Navbar = () => {
   // const [theme, setTheme] = useState();
-  const {auth, login,logout} = useAuthStore()
+  const {auth, logout} = useAuthStore()
   const handleLogout = () => {
     toast.success("Logged Out",{duration:800})
     logout();
@@ -16,6 +16,7 @@ const Navbar = () => {
 
   return (
     <React.Fragment>
+      <Toaster position="top-center"></Toaster>
       <nav className="bg-[#003580] px-5 py-4 my-0 ">
         <div className="flex items-center justify-between">
           <Link to="/">
