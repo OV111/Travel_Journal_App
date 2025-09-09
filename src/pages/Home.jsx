@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AirplaneWindow from "../assets/AirplaneWindow.png";
 import { AuthContext } from "../Context/AuthContext";
@@ -66,7 +66,7 @@ const Home = () => {
 
   return (
     <React.Fragment>
-      <main className="text-center  relative">
+      <main className="text-center relative">
         <div
           className="relative flex flex-col items-center justify-center h-[620px] bg-cover bg-center gap-0"
           style={{ backgroundImage: `url(${AirplaneWindow})` }}
@@ -117,8 +117,8 @@ const Home = () => {
                   <Card
                     key={post.id}
                     sx={{
-                      minWidth: { xs: 280, sm: 300, md: 350, lg: 430,  xl: 570, },
-                      maxWidth: { xs: 320, sm: 360, md: 400, lg: 550,  xl: 650,},
+                      minWidth: { xs: 280, sm: 300, md: 350, lg: 430, xl: 570 },
+                      maxWidth: { xs: 320, sm: 360, md: 400, lg: 550, xl: 650 },
                       // minWidth: 420,
                       // maxWidth: 500,
                       borderRadius: "20px",
@@ -209,7 +209,7 @@ const Home = () => {
                   minHeight: 50,
                   width: "100%",
                   // maxWidth: 430,
-                  maxWidth: { xs: 280, sm: 300, md: 320, lg:430,xl:550 },
+                  maxWidth: { xs: 280, sm: 300, md: 320, lg: 430, xl: 550 },
                   borderRadius: "20px",
                   boxShadow: 0,
                   px: 2,
