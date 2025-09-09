@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AirplaneWindow from "../assets/AirplaneWindow.png";
-import { AuthContext } from "../Context/AuthContext";
 
 import useAuthStore from "../Context/useAuthStore";
 import useTripsStore from "../Context/useTripsStore";
 
-// import { TripsContext } from "../Context/TripsContext";
 import SplitText from "../components/SplitText";
 
 import Card from "@mui/material/Card";
@@ -20,7 +18,7 @@ const travelQuotes = [
   {
     quote: "Travel is the only thing you buy that makes you richer",
     author: "Anonymous",
-  },
+},
   { quote: "Adventure awaits those who seek it", author: "Explorer's Wisdom" },
   { quote: "Collect moments, not things", author: "Travel Philosophy" },
   {
@@ -42,7 +40,6 @@ const Home = () => {
   const posts = useTripsStore().posts;
 
   const fetchPosts = useTripsStore().fetchPosts;
-  // const { posts } = useContext(TripsContext);
   const [current, setCurrent] = useState(0);
 
   const nextSlide = () => {
@@ -100,7 +97,7 @@ const Home = () => {
           <h1 className="text-3xl sm:text-5xl md:text-5xl lg:text-[2.7rem] font-bold text-[#033e91] pt-8">
             Popular Destinations
           </h1>
-          <p className="text-sm sm:text-sm md:text-2xl lg:text-[1.4rem] text-slate-600  max-w-4xl mx-auto pt-2 pb-8">
+          <p className="text-[0.8rem] sm:text-sm md:text-2xl lg:text-[1.4rem] text-slate-600  max-w-4xl mx-auto pt-2 pb-8">
             Discover amazing places through the eyes of fellow travelers
           </p>
 
@@ -217,7 +214,17 @@ const Home = () => {
                 variant="outlined"
               >
                 <CardContent className="text-center px-10">
-                  <Typography sx={{ fontSize: "1.25rem", mb: 0, mt: 2 }}>
+                  <Typography
+                    sx={{
+                      fontWeight: 700,
+                      mb: 2,
+                      mt: 2,
+                      fontSize: "1.3rem",
+                      letterSpacing: "0.5px",
+                      color: "#1e293b",
+                    }} // slate-800,}}>
+                  >
+                    {" "}
                     {quote.author}
                   </Typography>
 
@@ -226,7 +233,14 @@ const Home = () => {
                     variant="body1"
                     align="center"
                     textAlign={"center"}
-                    sx={{ fontSize: "0.98rem", lineHeight: 1.4 }}
+                    sx={{
+                      fontSize: "1.1rem",
+                      lineHeight: 1.75,
+                      color: "#475569", // slate-600
+                      fontStyle: "italic",
+                      maxWidth: "38ch",
+                      mx: "auto",
+                    }}
                   >
                     {quote.quote}
                   </Typography>
