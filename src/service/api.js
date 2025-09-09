@@ -23,7 +23,7 @@ class ApiService {
       const data = await response.json();
 
       if (SuccessMessage) {
-        toast.success(SuccessMessage);
+        // toast.success(SuccessMessage);
         console.log("correct");
       }
       return data;
