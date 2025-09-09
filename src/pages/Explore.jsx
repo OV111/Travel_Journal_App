@@ -1,4 +1,4 @@
-import React, { useContext, useState, lazy, Suspense, useEffect } from "react";
+import React, { useState, lazy, Suspense, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
@@ -19,7 +19,6 @@ const Aurora = lazy(() => {
 });
 
 const Explore = () => {
-  // const { isAuthenticated } = useContext(AuthContext);
   const { auth } = useAuthStore();
   const { posts, addTrip, fetchPosts } = useTripsStore();
   const [message, setMessage] = useState("");
@@ -59,178 +58,70 @@ const Explore = () => {
           </p>
         </div>
 
-        {/* <Grid container spacing={4} padding={5} className="relative z-10  ">
+        <Grid container spacing={4} padding={5} className="relative z-10  ">
           {posts.map((post) => (
-            <Grid
-              item
+            <Card
               key={post.id}
-              xs={12} // full width on extra-small screens
-              sm={6} // 2 per row on small screens
-              md={4} // 3 per row on medium
-              lg={3} // 4 per row on large
-              xl={3}
+              sx={{
+                // minWidth: { xs: 280, sm: 300, md: 350, lg: 420, xl: 570 },
+                // maxWidth: { xs: 320, sm: 360, md: 400, lg: 550, xl: 650 },
+                minWidth: 425,
+                maxWidth: 425,
+                borderRadius: "20px",
+                boxShadow: 0,
+              }}
+              variant="outlined"
             >
-              <Card
-                key={post.id}
-                sx={{
-                  // minWidth: {xs:200,sm: 350,md: 400,lg:425, xl: 550},
-                  // maxWidth: {xs:350,sm:400,md: 410,lg:425, xl:650},
-                  width: "100%",
-                  minWidth: { xs: 280, sm: 300, md: 350, lg: 425, xl: 550 },
-                  maxWidth: { xs: 320, sm: 360, md: 425, lg: 550, xl: 650 },
-                  // minWidth: 425,
-                  // maxWidth: 425,
-                  borderRadius: "1rem",
-                  boxShadow: 1,
-                  transition: "transform 0.3s, boxShadow 0.3s",
-                }}
-                variant="outlined"
-              >
-                <CardMedia
-                  component="img"
-                  height="140"
-                  image={post.image}
-                  alt="post image"
-                  sx={{
-                    width: "100%",
-                    minWidth: { xs: 280, sm: 300, md: 350, lg: 330, xl: 550 },
-                    maxWidth: { xs: 320, sm: 360, md: 425, lg: 500, xl: 650 },
-                    height: { xs: 180, sm: 200, md: 240 },
-                    objectFit: "cover",
-                  }}
-                />
-                <CardContent>
-                  <Typography
-                    gutterBottom
-                    variant="h5"
-                    alignItems="center"
-                    textAlign="center"
-                    sx={{ mb: 0.5 }}
-                  >
-                    {post.title.toUpperCase()}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    textAlign="center"
-                    sx={{ mb: 1 }}
-                  >
-                    {post.location} • {new Date(post.date).toLocaleDateString()}
-                  </Typography>
-                  <Typography variant="body2" maxHeight={400}>
-                    {post.shortDescription}
-                  </Typography>
-                </CardContent>
-                <CardActions>
+              <CardMedia
+                component="img"
+                height="220"
+                image={post.image}
+                alt={post.title}
+                sx={{ height: 200 }}
+              />
+              <CardContent>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  alignItems="center"
+                  textAlign="center"
+                  sx={{ mb: 0.5 }}
+                >
+                  {post.title.toUpperCase()}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  textAlign="center"
+                  sx={{ mb: 1 }}
+                >
+                  {post.location} • {new Date(post.date).toLocaleDateString()}
+                </Typography>
+                <Typography variant="body2" maxHeight={400}>
+                  {post.shortDescription}
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button
+                  size="small"
+                  sx={{ px: 2 }}
+                  component={Link}
+                  to={`/explore/${post.id}`}
+                >
+                  Read More
+                </Button>
+
+                {auth && (
                   <Button
                     size="small"
                     sx={{ px: 2 }}
-                    component={Link}
-                    to={`/explore/${post.id}`}
+                    onClick={() => handleAddTrip(post)}
                   >
-                    Read More
+                    Add to Journal
                   </Button>
-
-                  {auth && (
-                    <Button
-                      size="small"
-                      sx={{ px: 2 }}
-                      onClick={() => handleAddTrip(post)}
-                    >
-                      Add to Journal
-                    </Button>
-                  )}
-                </CardActions>
-              </Card>
-            </Grid>
-          ))}
-        </Grid> */}
-        <Grid container spacing={4} padding={5} className="relative z-10">
-          {posts.map((post) => (
-            <Grid
-              item
-              key={post.id}
-              xs={12} // full width on extra-small screens
-              sm={6} // 2 per row on small screens
-              md={4} // 3 per row on medium
-              lg={3} // 4 per row on large
-              xl={3} // 4 per row on extra-large
-            >
-              <Card
-                sx={{
-                  width: "100%", // always fill the Grid cell
-                  height: 380, // optional, keeps even heights
-                  borderRadius: "1rem",
-                  boxShadow: 1,
-                  transition: "transform 0.3s, box-shadow 0.3s",
-                }}
-                variant="outlined"
-              >
-                <CardMedia
-                  component="img"
-                  image={post.image}
-                  alt="post image"
-                  // sx={{
-                  //   width: "100%",
-                  //   height: 200,
-                  //   objectFit: "cover", // prevents stretching
-                  // }}
-
-                  sx={{
-                    width: "100%", // force full card width
-                    height: 220, // fixed height for all images
-                    objectFit: "cover", // crops the image (keeps center focus)
-                    borderTopLeftRadius: "1rem",
-                    borderTopRightRadius: "1rem",
-                  }}
-                  
-                />
-                <CardContent>
-                  <Typography
-                    gutterBottom
-                    variant="h5"
-                    textAlign="center"
-                    sx={{ mb: 0.5 }}
-                  >
-                    {post.title.toUpperCase()}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    textAlign="center"
-                    sx={{ mb: 1 }}
-                  >
-                    {post.location} • {new Date(post.date).toLocaleDateString()}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{ maxHeight: 80, overflow: "hidden" }}
-                  >
-                    {post.shortDescription}
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                  <Button
-                    size="small"
-                    sx={{ px: 2 }}
-                    component={Link}
-                    to={`/explore/${post.id}`}
-                  >
-                    Read More
-                  </Button>
-
-                  {auth && (
-                    <Button
-                      size="small"
-                      sx={{ px: 2 }}
-                      onClick={() => handleAddTrip(post)}
-                    >
-                      Add to Journal
-                    </Button>
-                  )}
-                </CardActions>
-              </Card>
-            </Grid>
+                )}
+              </CardActions>
+            </Card>
           ))}
         </Grid>
       </div>
