@@ -17,58 +17,65 @@ const ReadMore = () => {
   if (!selectedPost) {
     return (
       <React.Fragment>
-        <NotFound >404 Not Found</NotFound>
+        <NotFound>404 Not Found</NotFound>
       </React.Fragment>
     );
   }
 
   return (
     <React.Fragment>
-      <div className="w-full min-h-screen bg-background bg-zinc-100 ">
+      <div className="w-full min-h-screen bg-background bg-zinc-100">
+        {/* Hero Section */}
         <div className="relative overflow-hidden">
           <img
             src={selectedPost.image}
             alt={selectedPost.title}
-            className="w-full h-[500px] object-cover"
+            className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover"
           />
-          <div className="absolute inset-0  bg-gradient-to-t from-black/60 via-black/20 to-transparent">
-            <h1 className="text-gray-100 text-6xl font-bold pl-10 mt-80  ">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex flex-col justify-end p-6 sm:p-10">
+            <h1 className="text-gray-100 text-3xl sm:text-4xl lg:text-6xl font-bold">
               {selectedPost.title}
             </h1>
-            <p className="text-gray-100 text-3xl font-bold pl-11 mt-4">
-              {selectedPost.location} • {new Date(selectedPost.date).toLocaleDateString()}
+            <p className="text-gray-100 text-lg sm:text-xl lg:text-3xl font-semibold mt-2">
+              {selectedPost.location} •{" "}
+              {new Date(selectedPost.date).toLocaleDateString()}
             </p>
           </div>
         </div>
-        <div>
-          <p className="text-slate-500 text-2xl text-start ml-10 mt-6">
+
+        {/* Description */}
+        <div className="px-4 sm:px-8 lg:px-16 py-8">
+          <p className="text-slate-500 text-lg sm:text-xl lg:text-2xl mb-6">
             {selectedPost.shortDescription}
           </p>
-          <h3 className="text-3xl font-medium text-[#003580] ml-10 mt-6">
+          <h3 className="text-2xl sm:text-3xl font-medium text-[#003580] mb-4">
             A Journey Worth Taking
           </h3>
-          <p className="text-xl ml-10 mt-2 ">
+          <p className="text-base sm:text-lg lg:text-xl leading-relaxed">
             Every destination has a story waiting to be discovered — from hidden
-            corners of bustling cities to the calm beauty of natures wonders. No
-            matter where the road leads, each journey brings new memories, fresh
-            perspectives, and experiences that stay with us forever. Wherever
-            you go, let curiosity guide you, because the best trips are not just
-            about the places you visit, but the moments you create along the
-            way.
+            corners of bustling cities to the calm beauty of nature’s wonders.
+            No matter where the road leads, each journey brings new memories,
+            fresh perspectives, and experiences that stay with us forever.
+            Wherever you go, let curiosity guide you, because the best trips are
+            not just about the places you visit, but the moments you create
+            along the way.
           </p>
         </div>
 
-        <div className="mt-16 mb-16 ml-[25rem] p-8 bg-card rounded-lg bg-zinc-200 w-[40rem]">
-          <div className="text-center space-y-4">
-            <h3 className="text-3xl font-serif font-bold text-card-foreground">
+        {/* Call-to-Action */}
+        <div className="flex justify-center mt-12 mb-16 px-4">
+          <div className="w-full sm:w-[80%] lg:w-[60%] p-6 sm:p-8 bg-card rounded-lg bg-zinc-200 text-center space-y-4">
+            <h3 className="text-2xl sm:text-3xl font-serif font-bold text-card-foreground">
               Ready for Your Next Adventure?
             </h3>
-            <p className="text-2xl text-muted-foreground">
+            <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground">
               Discover more amazing destinations and travel stories.
             </p>
-            <button className="font-medium text-xl mt-3  px-6 py-3 bg-blue-600 text-white rounded-lg cursor-pointer hover:bg-[#003580] transition-colors duration-300 ease-in-out">
-              <Link to="/explore">Explore More Articles</Link>
-            </button>
+            <Link to="/explore">
+              <button className="font-medium text-base sm:text-lg lg:text-xl mt-3 px-6 py-3 bg-blue-600 text-white rounded-lg cursor-pointer hover:bg-[#003580] transition-colors duration-300 ease-in-out">
+                Explore More Articles
+              </button>
+            </Link>
           </div>
         </div>
       </div>
