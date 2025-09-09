@@ -1,8 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../Context/AuthContext";
-import { toast } from "react-toastify";
+import { Toaster, toast } from "react-hot-toast";
 import useAuthStore from "../Context/useAuthStore";
 
 const Login = () => {
@@ -18,7 +17,7 @@ const Login = () => {
     const loginSuccess = login(username, password);
     if (username.trim().length >= 3 && password.length >= 6) {
       if (loginSuccess) {
-        toast.success("User Logged In", { autoClose: 800 });
+        toast.success("User Logged In", { duration: 1200 });
         setTimeout(() => {
           navigate("/my-journal");
         }, 1200);
@@ -31,6 +30,7 @@ const Login = () => {
   };
   return (
     <React.Fragment>
+      <Toaster position="top-center"></Toaster>
       <div className=" bg-gray-200 justify-center items-center space-y-6 w-100 min-h-85 mx-auto my-20 px-8 rounded-2xl">
         <div className="text-center">
           <h2 className="text-3xl pt-8 font-bold text-gray-900">
