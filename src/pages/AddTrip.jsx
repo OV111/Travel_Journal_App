@@ -1,4 +1,4 @@
-import React, { useContext, useState, lazy, Suspense } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import { TripsContext } from "../Context/TripsContext";
 import { initialPosts } from "../data/posts";
 import { ToastContainer, toast } from "react-toastify";
@@ -8,15 +8,14 @@ import useTripsStore from "../Context/useTripsStore";
 const Aurora = lazy(() => import("../components/Aurora"));
 
 const AddTrip = () => {
-  // const { addTrip } = useContext(TripsContext);
-  const {addTrip} = useTripsStore()
+  const { addTrip } = useTripsStore();
   const [destination, setDestination] = useState("");
   const [location, setLocation] = useState("");
   const [date, setDate] = useState(null);
   const [image, setImage] = useState(null);
   const [description, setDescription] = useState("");
 
-  const fileInputRef = useRef()
+  const fileInputRef = useRef();
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -31,14 +30,14 @@ const AddTrip = () => {
     initialPosts.push(newTrip);
     addTrip(newTrip);
 
-    toast("Trip Added to My Journal")
+    toast.success("Trip Added to My Journal");
     setDestination("");
     setLocation("");
     setDate(null);
     setImage(null);
     setDescription("");
-    if(fileInputRef.current) {
-      fileInputRef.current.value = ""
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
     }
   };
 
@@ -47,7 +46,7 @@ const AddTrip = () => {
     if (file) {
       const imgUrl = URL.createObjectURL(file);
       setImage(imgUrl);
-    } 
+    }
   };
 
   return (
